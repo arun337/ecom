@@ -1,0 +1,41 @@
+{% extends 'home/main.html'%}
+{%load static%}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="py-3 bg-primary">
+    <div class="container">
+        <a class="text-white" href="{% url 'index'%}">Home/</a>
+        <a class="text-white" href="{% url 'category'%}">Collection</a>
+    </div>   
+
+</div>
+
+
+    <div class="container">
+
+    <div class="row">
+        <div class="container">
+            <div class="col-md-12">
+                <h2>Collection</h2>
+                <hr>
+                <div class="row">
+                {% for item in category%}
+                <div class="col-md-3">
+                    <div class="card-deck" >
+                        <a href="{% url 'collections' item.slug%}" >
+                            <div class="card">
+                                <div class="category-image">
+                                    <img src=" {{item.image.url}}" alt="Category Image" class="card-img-top">
+                                </div>
+                                <h4 class="text-center">{{item.name}}</h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

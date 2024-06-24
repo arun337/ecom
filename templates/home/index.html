@@ -1,0 +1,183 @@
+
+{%load static%}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>
+
+{% block title%}
+{% endblock title %}
+  </title>
+  <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+  <style>
+    a{
+      text-decoration:none;
+
+    }
+  </style>
+</head>
+{% include 'inc/navbar.html'%}
+  <body>
+   
+
+    {% block content%}
+ {% include 'inc/slider.html'%}
+{% endblock content %}
+{% for item in products%}
+    <div class="categories">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <p>{{item.name}}
+                    <img src="{{item.product_image.url}}">
+                </div>
+            </div>
+        </div>
+    </div>
+   {% endfor %} 
+    <!-- Featured Products -->
+    
+    <div class="small-container">
+        <h2 class="title">Featured Products</h2>
+        <div class="row">
+            {% for product in featured_product%}
+            <div class="col-4">
+                <a href="{% url 'productdetail' product.category.slug product.slug %}"><img src="{{product.product_image.url}}"></a>
+                <h4>{{product.name}}</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>{{product.price}}</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+    
+    <!-- Offer -->
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-2">
+                    {% for x in exclusive %}
+                    <img src="{{x.image.url}}" class="offer-img">
+                    
+                </div>
+                <div class="col-2">
+                    <p>Exclusively Available on RedStore</p>
+                    <h1>{{x.name}}</h1>
+                    <small>{{x.description}}<br></small>
+                    
+                    <a href="{% url 'exclusive_product' x.id%}" class="btn">Buy Now &#8594;</a>
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+      <!-- Testimonial -->
+      <div class="testimonial">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        industry's standard dummy text.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <img src="{% static 'images/user-1.png'%}">
+                    <h3>Sean Parker</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        industry's standard dummy text.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <img src="{% static 'images/user-2.png'%}">
+                    <h3>Mike Smith</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        industry's standard dummy text.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <img src="{% static 'images/user-3.png'%}">
+                    <h3>Mabel Joe</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Brands -->
+    
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="{% static 'images/logo-godrej.png'%}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'images/logo-oppo.png'%}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'images/logo-coca-cola.png'%}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'images/logo-paypal.png'%}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'images/logo-philips.png'%}">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    
+    <script>
+      alertify.set('notifier','position', 'top-right');
+      {% for msg in messages%}
+      alertify.success('{{msg}}');
+      {%endfor%}
+    </script>
+    
+    {% block scripts%}
+    {% endblock scripts%}
+    
+  </body>
+</html>
+
+
